@@ -10,6 +10,10 @@ namespace Lab6
         Сберегательный
     }
 
+    /// <summary>
+    /// Класс для представления банковского счета.
+    /// Содержит информацию о номере счета, балансе, типе счета и методы управления балансом.
+    /// </summary>
     class BankAccount
     {
         int accountNumber;
@@ -18,6 +22,9 @@ namespace Lab6
         bool flag = false;
         static List<int> BankAccCount = new List<int>();
 
+        /// <summary>
+        /// Конструктор по умолчанию. Создает счет с уникальным номером.
+        /// </summary>
         public BankAccount()
         {
             this.accountNumber = MakeRandom();
@@ -33,11 +40,13 @@ namespace Lab6
         {
             if (accountBalance >= 0 && !BankAccCount.Contains(accountNumber))
             {
-            this.accountNumber = MakeRandom();
-            this.accBalance = accountBalance;
-            this.accType = newType;
-            this.flag = false; }
-            else {
+                this.accountNumber = MakeRandom();
+                this.accBalance = accountBalance;
+                this.accType = newType;
+                this.flag = false;
+            }
+            else
+            {
                 Console.WriteLine("Невозможный исход. Баланс должен быть больше или равен нулю.");
                 this.flag = true;
             }
@@ -80,26 +89,51 @@ namespace Lab6
                    $"Тип счета: {accType}\n" +
                    $"Баланс: {accBalance:C}";
         }
+
+        /// <summary>
+        /// Снимает указанную сумму со счета.
+        /// </summary>
+        /// <param name="money">Сумма для снятия.</param>
         public void TakeMoney(decimal money)
         {
-            if (money <= this.accBalance) {
+            if (money <= this.accBalance)
+            {
                 this.accBalance -= money;
             }
+            else
+            {
+                Console.WriteLine("Недостаточно средств на счете.");
+            }
         }
+
+        /// <summary>
+        /// Добавляет указанную сумму на счет.
+        /// </summary>
+        /// <param name="money">Сумма для добавления.</param>
         public void AddMoney(decimal money)
         {
             this.accBalance += money;
         }
-        int MakeRandom() {
+
+        /// <summary>
+        /// Генерирует уникальный номер счета.
+        /// Уникальность проверяется с использованием списка существующих номеров счетов.
+        /// </summary>
+        /// <returns>Уникальный номер счета.</returns>
+        private int MakeRandom()
+        {
             Random rnd = new Random();
-            int number = rnd.Next(1,1238957239);
-            if (!BankAccCount.Contains(number)) {
+            int number = rnd.Next(1, 1238957239);
+            if (!BankAccCount.Contains(number))
+            {
                 BankAccCount.Add(number);
                 return number;
             }
-            else{
-                while (BankAccCount.Contains(number)) {
-                    number = rnd.Next(1,1235982375);
+            else
+            {
+                while (BankAccCount.Contains(number))
+                {
+                    number = rnd.Next(1, 1235982375);
                 }
                 BankAccCount.Add(number);
                 return number;

@@ -46,7 +46,7 @@
             Console.WriteLine("\nДомашняя работа\n");
             Console.WriteLine("Реализовать класс для описания здания (уникальный номер здания, высота, этажность, количество квартир, подъездов).");
             int buildingHeight = 2424;
-            int floorNumb = 56;
+            int floorNumb = 5;
             int appartmentNumb = 250;
             int entranceNumb = 5;
             Building kpfu = new Building(buildingHeight,floorNumb,appartmentNumb,entranceNumb);
